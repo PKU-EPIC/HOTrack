@@ -1,0 +1,70 @@
+# dirs
+experiment_dir:  objopt_bottle_HO3D
+
+# data info
+data_config: data_info_HO3D.yml    # name of the .yml file in data_config
+obj_category: ['bottle']
+num_points: 1024
+hand_jitter_cfg:
+    mano_scale: 0
+    rand_scale: 0        # std for 'normal' and range for 'uniform'
+    rand_type: normal       #'normal' or 'uniform'
+obj_jitter_cfg:
+    type: normal
+    s: 0
+    r: 5
+    t: 0.03
+
+track: obj_opt   #['hand', 'hand_IKNet', 'obj_opt', False] False is for training 
+pointnet_cfg:
+    camera: pointnet2_camera_shallow1.yml
+network:
+    type: HandTrackNet
+    handframe: kp
+    backbone_out_dim: 384
+
+# used in HandTrackModel in network/models/track_network.py
+sdf_code_source: pred
+use_pred_obj_pose: False
+
+# used in network/models/optimization_obj.py
+opt:
+    updateobjshape: False   
+    NetworkSpecs:
+        dims: [ 512, 512, 512, 512, 512, 512, 512, 512 ]
+        dropout : [0, 1, 2, 3, 4, 5, 6, 7]
+        dropout_prob : 0.2
+        norm_layers : [0, 1, 2, 3, 4, 5, 6, 7]
+        latent_in : [4]
+        xyz_in_all : False
+        use_tanh : False
+        latent_dropout : False
+        weight_norm : True
+
+# optimization options in learning network
+batch_size: 1       # must set to 1 when tracking
+total_epoch: 300
+optimizer: Adam
+weight_decay: 0.0001
+warm_up: 0
+learning_rate: 0.0001
+lr_policy: step
+lr_gamma: 0.5 # lr decay rate
+lr_step_size: 20
+lr_clip: 0.00001 # min lr
+weight_init: xavier
+
+# bn momentum adjustment
+momentum_original: 0.1
+momentum_decay: 0.5
+momentum_step_size: 20  # = lr_step_size
+momentum_min: 0.01
+
+# save frequency
+freq:
+    save: 5
+
+# device
+cuda_id: 0
+
+

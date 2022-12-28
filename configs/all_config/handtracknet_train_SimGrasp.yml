@@ -1,0 +1,59 @@
+# dirs
+experiment_dir: train_debug
+resume_epoch: -1
+
+# data info
+data_config: data_info_SimGrasp.yml    # name of the .yml file in data_proc
+# obj_category: ['bottle_sim', 'car_sim', 'bowl_sim']
+obj_category: ['bottle_sim']
+num_points: 512
+hand_jitter_cfg:
+    mano_scale: 0
+    rand_scale: 0.02        # std for 'normal' and range for 'uniform'
+    rand_type: normal       #'normal' or 'uniform'
+obj_jitter_cfg:
+    type: normal
+    s: 0
+    r: 0
+    t: 0
+
+track: False   #['hand', 'hand_IKNet', 'obj_opt', False] False is for training 
+pointnet_cfg:
+    camera: pointnet2_camera_shallow1.yml
+network:
+    type: HandTrackNet
+    handframe: kp
+    backbone_out_dim: 384
+    loss_weight:
+        hand_pred_kp_loss: 10
+        hand_pred_r_loss: 1
+        hand_pred_t_loss: 1
+
+# used in HandTrackModel in network/models/track_network.py
+use_pred_obj_pose: False    
+
+# optimization options
+batch_size: 32
+total_epoch: 300
+optimizer: Adam
+weight_decay: 0.0001
+warm_up: 0
+learning_rate: 0.0001
+lr_policy: step
+lr_gamma: 0.5 # lr decay rate
+lr_step_size: 20
+lr_clip: 0.00001 # min lr
+momentum_original: 0.1
+momentum_decay: 0.5
+momentum_step_size: 20  # = lr_step_size
+momentum_min: 0.01
+weight_init: xavier
+
+# save frequency
+freq:
+    save: 5
+
+# device
+cuda_id: 0
+
+

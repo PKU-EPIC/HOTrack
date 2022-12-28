@@ -1,0 +1,36 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/local/cuda/bin/nvcc
+
+cflags = -pthread -B /home/jiayichen/miniconda3/envs/ho/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /home/jiayichen/miniconda3/envs/ho/include -fPIC -O2 -isystem /home/jiayichen/miniconda3/envs/ho/include -fPIC -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/TH -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/jiayichen/miniconda3/envs/ho/include/python3.8 -c
+post_cflags = -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=pointnet2_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+cuda_cflags = -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/TH -I/home/jiayichen/miniconda3/envs/ho/lib/python3.8/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/jiayichen/miniconda3/envs/ho/include/python3.8 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O2 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=pointnet2_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -std=c++14
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/ball_query.o: compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/ball_query.cpp
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/ball_query_gpu.o: cuda_compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/ball_query_gpu.cu
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/group_points.o: compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/group_points.cpp
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/group_points_gpu.o: cuda_compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/group_points_gpu.cu
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/interpolate.o: compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/interpolate.cpp
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/interpolate_gpu.o: cuda_compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/interpolate_gpu.cu
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/pointnet2_api.o: compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/pointnet2_api.cpp
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/sampling.o: compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/sampling.cpp
+build /home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/sampling_gpu.o: cuda_compile /home/jiayichen/HO_Track/network/models/pointnet_lib/src/sampling_gpu.cu
+
+
+
+
+

@@ -1,0 +1,10 @@
+**/__pycache__
+**/debug
+.idea/
+*.npy
+*.obj
+vis/
+third_party/mano/models
+data/
+data
+debug*

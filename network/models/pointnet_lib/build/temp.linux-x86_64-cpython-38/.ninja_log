@@ -1,0 +1,10 @@
+# ninja log v5
+1	5862	1671873316327519026	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/group_points.o	6c9c060f0c15194a
+1	5863	1671873316327519026	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/sampling.o	5f4bd028313ecf5a
+1	6238	1671873316703523685	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/interpolate.o	949321151231e102
+0	6369	1671873316835525321	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/ball_query.o	4421cc4cd5ddbf4c
+1	14175	1671873324487620122	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/group_points_gpu.o	6819ae9450c840a6
+1	14318	1671873324699622748	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/ball_query_gpu.o	64b565c0e6b3c4dc
+1	14613	1671873324967626069	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/interpolate_gpu.o	80cda389fb638f6d
+1	14774	1671873325107627803	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/sampling_gpu.o	29bd98e652fb1543
+1	21650	1671873332107714527	/home/jiayichen/HO_Track/network/models/pointnet_lib/build/temp.linux-x86_64-cpython-38/src/pointnet2_api.o	e97bc377a69d5405

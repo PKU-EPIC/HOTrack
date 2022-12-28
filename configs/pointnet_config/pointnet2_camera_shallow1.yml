@@ -1,0 +1,29 @@
+sa1:
+  npoint: 256
+  radius_list: [0.1]
+  nsample_list: [32]
+  # in_channel: 3
+  mlp_list:
+    - [32, 32, 64]
+
+sa2:
+  npoint: 128
+  radius_list: [0.2]
+  nsample_list: [32]
+  # in_channel: 320
+  mlp_list:
+    - [64, 64, 128]
+
+sa3:
+  mlp: [128, 128, 512]
+
+fp3:  # sa3 + sa2
+  mlp: [256, 256]
+
+fp2: # fp3 + sa1
+  mlp: [256, 128]
+
+fp1: # fp2 + init
+  mlp: [128, 128]
+
+

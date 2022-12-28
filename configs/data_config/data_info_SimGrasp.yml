@@ -1,0 +1,34 @@
+basepath: 'SimGrasp'
+dataset_name: SimGrasp
+num_frames: 100
+
+# NOTE: sym will be used only when evaluation. see pose_utils/metrics.py for more.
+bottle_sim:
+    sym: 1
+    num_parts: 1
+    train_val_split: [255,44]
+
+car_sim:
+    sym: 3
+    num_parts: 1
+    train_val_split: [253,45]
+
+bowl_sim:
+    sym: 1
+    num_parts: 1
+    train_val_split: [144,25]
+
+bottle:
+    sym: 1
+    num_parts: 1
+    train_val_split: [255,44]
+
+car:
+    sym: 3
+    num_parts: 1
+    train_val_split: [253,45]
+
+bowl:
+    sym: 1
+    num_parts: 1
+    train_val_split: [144,25]

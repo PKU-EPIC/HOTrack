@@ -1,0 +1,24 @@
+basepath: 'HO3D'
+dataset_name: HO3D
+num_frames: 2000
+
+# NOTE: sym will be used only when evaluation. see pose_utils/metrics.py for more.
+bottle:
+    sym: -1
+    num_parts: 1
+
+box:
+    sym: 3 
+    num_parts: 1
+
+banana:
+    sym: 4 
+    num_parts: 1
+
+scissors:
+    sym: 4
+    num_parts: 1
+
+drill:
+    sym: 4
+    num_parts: 1
