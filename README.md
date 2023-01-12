@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is the PyTorch implementation of our paper[Tracking and Reconstructing Hand Object Interactions from Point Cloud Sequences in the Wild](https://arxiv.org/abs/2209.12009). 
+This is the PyTorch implementation of our paper [Tracking and Reconstructing Hand Object Interactions from Point Cloud Sequences in the Wild](https://arxiv.org/abs/2209.12009). 
 For more information, please visit our [project page](https://pku-epic.github.io/HOtrack/).
 
 
